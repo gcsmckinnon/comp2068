@@ -1,0 +1,27 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+$background: #ecf0f1;
+$button-colour: #e74c3c;
+
+body {
+  background-color: $background;
+
+  .container {
+    background-color: #fff;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 1em;
+
+    .card {
+      .btn {
+        background-color: $button-colour;
+        border: $button-colour;
+      }
+    }
+  }
+}
