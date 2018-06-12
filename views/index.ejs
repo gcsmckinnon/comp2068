@@ -1,0 +1,27 @@
+<% include partials/header %>
+  
+<article>
+  <div class="row">
+
+    <% for ( let card of cards ) { %>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= card.cardTitle %>
+            </h5>
+            <p>
+              <%= card.cardBody %>
+            </p>
+            <a href="<%= card.cardLink.linkHREF %>" class="btn btn-primary">
+              <%= card.cardLink.linkLabel %>
+            </a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</article>
+  
+<% include partials/footer %>

@@ -1,0 +1,48 @@
+<% include ../partials/header %>
+  
+<section>
+  <div>
+    <a href="/products/new">New Product</a>
+  </div>
+
+  <div class="row">
+
+    <% for ( let product of products ) { %>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= product.name %>
+            </h5>
+
+            <p>
+              <%= product.description %>
+            </p>
+            
+            <p>
+              <%= product.price %>
+            </p>
+            
+            <div class="actions">
+              <a href="/products/<%= product.id %>" class="btn btn-primary">
+                Show
+              </a>
+
+              <a href="/products/<%= product.id %>/edit" class="btn btn-primary">
+                Edit
+              </a>
+
+              <form action="/products/<%= product.id %>/delete" method="post"  onsubmit="return confirm('Are you sure you want to delete this product?');">
+                <input type="hidden" name="id" value="<%= product.id %>">
+                <button type="submit" class="btn btn-danger">DELETE</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</section>
+
+<% include ../partials/footer %>

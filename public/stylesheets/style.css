@@ -1,0 +1,22 @@
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  background-color: #ecf0f1; }
+  body .container {
+    background-color: #fff;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 1em; }
+    body .container .card {
+      margin-bottom: 1em; }
+      body .container .card .btn {
+        background-color: #e74c3c;
+        border: #e74c3c; }
+      body .container .card .actions form {
+        display: inline; }
+
+/*# sourceMappingURL=style.css.map */
