@@ -4,25 +4,25 @@ var router = express.Router()
 // create a link to our drink model
 var productsController = require('../controllers/productsController')
 
-// index
+// index (http://my-app.com/products)
 router.get( '/', productsController.index )
 
-// new
+// new (http://my-app.com/products/new)
 router.get( '/new', productsController.new )
 
-// show
+// show (http://my-app.com/products/12345)
 router.get( '/:id', productsController.show )
 
-// edit
+// edit (http://my-app.com/products/12345/edit)
 router.get( '/:id/edit', productsController.edit )
 
-// create
+// create (http://my-app.com/products)
 router.post( '/', productsController.create )
 
-// update
+// update (http://my-app.com/products/12345)
 router.post( '/:id', productsController.update )
 
-// delete
+// delete (http://my-app.com/products/12345/delete)
 router.post( '/:id/delete', productsController.delete )
 
 // makes our file public to the application
