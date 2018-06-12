@@ -5,10 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+// this is our home route
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
-// add the controller
+// add the products routes
 var productsRouter = require('./routes/products');
 
 var app = express();
@@ -34,10 +34,10 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// this is our home route
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
-// register our products controller
+// this is our products router
 app.use('/products', productsRouter);
 
 // catch 404 and forward to error handler
