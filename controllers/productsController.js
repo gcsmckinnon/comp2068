@@ -157,6 +157,7 @@ exports.update = function ( req, res, next ) {
     product.name = req.body.name
     product.description = req.body.description
     product.price = req.body.price
+    product.image = imageName
     product.specifications = specifications
 
     product.save()
