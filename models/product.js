@@ -1,4 +1,4 @@
-var mongoose = require( 'mongoose' )
+var mongoose = require( 'mongoose' );
 
 // all model classes will inherit from 
 // the mongoose.Schema class
@@ -15,7 +15,7 @@ var productSchema = new mongoose.Schema({
     type: Number,
     required: 'Please enter an MSRP value.'
   }
-})
+});
 
 // make this class public
-module.exports = mongoose.model( 'Product', productSchema )
+module.exports = mongoose.model( 'Product', productSchema );
