@@ -9,7 +9,7 @@ const SpecificationSchema = new mongoose.Schema({
   },
   value: {
     type: String,
-    required: 'You must have a vlue.'
+    required: 'You must have a value.'
   }
 });
 
@@ -26,7 +26,10 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: 'Please enter an MSRP value.'
   },
-  specifications: [SpecificationSchema]
+  specifications: [SpecificationSchema],
+  image: {
+    type: String
+  }
 });
 
 // make this class public

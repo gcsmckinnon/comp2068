@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const fileUpload = require('express-fileupload');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -12,6 +13,7 @@ var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/products');
 
 var app = express();
+app.use(fileUpload());
 
 // use mongoose to connect to mongo
 var mongoose = require( 'mongoose' );

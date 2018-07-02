@@ -78,22 +78,39 @@ exports.edit = function ( req, res, next ) {
 /* ACTIONS */
 // Create 
 exports.create = function ( req, res, next ) {
+  // image
+  if ( req.files && req.files.image ) {
+    let image = req.files.image
+    image.mv(`public/images/${image.name}`)
+    imageName = image.name;
+  } else {
+    imageName = null;
+  }
+
+  // specifications
+  let specifications = null
   if (req.body['specification[key]'] && req.body['specification[value]']) {
-    let specifications = []
+    // assign an empty array to specfications
+    specifications =[]
     let spec_keys = req.body['specification[key]']
     let spec_values = req.body['specification[value]']
     
-    for (let i = 0; i < spec_keys.length; i++) {
-      specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+    // populate if an array
+    if ( spec_keys && Array.isArray( spec_keys ) ) {
+      for (let i = 0; i < spec_keys.length; i++) {
+        specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+      }
+    } else {
+      // populate is a string
+      specifications.push( { key: spec_keys, value: spec_values } )
     }
-  } else {
-    specifications = null;
   }
 
   Product.create({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
+    image: imageName,
     specifications: specifications
   })
   .then( function () {
@@ -106,18 +123,34 @@ exports.create = function ( req, res, next ) {
 
 // Update
 exports.update = function ( req, res, next ) {
+  // images
+  // image
+  if ( req.files && req.files.image ) {
+    let image = req.files.image
+    image.mv(`public/images/${image.name}`)
+    imageName = image.name;
+  } else {
+    imageName = null;
+  }
+  
+  // specifications
+  let specifications = null
   if (req.body['specification[key]'] && req.body['specification[value]']) {
-    let specifications = []
+    // assign an empty array to specfications
+    specifications =[]
     let spec_keys = req.body['specification[key]']
     let spec_values = req.body['specification[value]']
     
-    for (let i = 0; i < spec_keys.length; i++) {
-      specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+    // populate if an array
+    if ( spec_keys && Array.isArray( spec_keys ) ) {
+      for (let i = 0; i < spec_keys.length; i++) {
+        specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+      }
+    } else {
+      // populate is a string
+      specifications.push( { key: spec_keys, value: spec_values } )
     }
-  } else {
-    specifications = null;
   }
-  
 
   Product.findById( req.params.id )
   .then(function ( product ) {

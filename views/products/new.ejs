@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 
 <section>
-  <form action="/products" method="post" novalidate>
+  <form action="/products" method="post" novalidate enctype="multipart/form-data">
     <fieldset>
       <legend>Product Information</legend>
 
@@ -13,6 +13,10 @@
       <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" id="product_description" name="description" placeholder="Greasy, black, vampires of the deep." required>
+      </div>
+
+      <div class="form-group">
+        <input type="file" name="image" id="image">
       </div>
 
       <div class="form-group">
