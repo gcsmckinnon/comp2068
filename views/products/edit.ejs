@@ -27,6 +27,50 @@
       </div>
     </fieldset>
 
+    <fieldset>
+      <legend>Specifications</legend>
+      
+      <div id="product_specifications">
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-sm" onclick="addSpecForm()">Add Specification</button>
+        </div>
+        
+        <% if ( product.specifications && product.specifications.length > 0 ) {%>
+          <% for ( let spec of product.specifications ) { %>
+            <div class="specification">
+              <button type="button" class="remove btn btn-danger btn-small" onclick="return delSpecForm(event)">&times;</button>
+
+              <div class="form-group mr-4">
+                <label for="specification[key]" class="mr-1">Key</label>
+                <input type="text" class="form-control" id="product_specification_key" name="specification[key]" placeholder="colour" value="<%= spec.key %>">
+              </div>
+
+              <div class="form-group">
+                <label for="specification[value]" class="mr-1">Value</label>
+                <input type="text" class="form-control" id="product_specification_value" name="specification[value]" placeholder="red" value="<%= spec.value %>">
+              </div>
+            </div>
+          <% } %>
+        <% } %>
+
+        <template id="product_specification" class="form-inline mb-4">
+          <div class="specification">
+            <button type="button" class="remove btn btn-danger btn-small" onclick="return delSpecForm(event)">&times;</button>
+
+            <div class="form-group mr-4">
+              <label for="specification[key]" class="mr-1">Key</label>
+              <input type="text" class="form-control" id="product_specification_key" name="specification[key]" placeholder="colour">
+            </div>
+
+            <div class="form-group">
+              <label for="specification[value]" class="mr-1">Value</label>
+              <input type="text" class="form-control" id="product_specification_value" name="specification[value]" placeholder="red">
+            </div>
+          </div>
+        </template>
+      </div>
+    </fieldset>
+
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Update Product</button>
     </div>
