@@ -22,6 +22,17 @@
               <%= product.price %>
             </p>
             
+            <% if ( product.specifications && product.specifications.length > 0 ) { %>
+              <hr>
+              <h6>Specs</h6>
+              <% for( let spec of product.specifications ) { %>
+                <p>
+                  <strong><%= spec.key %>: </strong>
+                  <%= spec.value %>
+                </p>
+              <% } %>
+            <% } %>
+            
             <div class="actions">
               <a href="/products/<%= product.id %>" class="btn btn-primary">
                 Show
