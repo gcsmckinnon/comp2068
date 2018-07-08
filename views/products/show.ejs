@@ -10,6 +10,12 @@
     <div class="col-sm-6">
       <div class="card">
           <div class="card-body">
+            <% if ( product.image ) { %>
+              <div class="image">
+                <img src="/images/<%= product.image %>" class="img-thumbnail img-fluid">
+              </div>
+            <% } %>
+            
             <h5 class="card-title">
               <%= product.name %>
             </h5>
@@ -34,10 +40,6 @@
             <% } %>
             
             <div class="actions">
-              <a href="/products/<%= product.id %>" class="btn btn-primary">
-                Show
-              </a>
-
               <a href="/products/<%= product.id %>/edit" class="btn btn-primary">
                 Edit
               </a>
