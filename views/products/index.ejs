@@ -1,9 +1,11 @@
 <% include ../partials/header %>
   
 <section>
-  <div>
-    <a href="/products/new">New Product</a>
-  </div>
+  <% if ( authenticated ) { %>
+    <div>
+      <a href="/products/new">New Product</a>
+    </div>
+  <% } %>
 
   <div class="row">
 
@@ -32,15 +34,17 @@
               <a href="/products/<%= product.id %>" class="btn btn-primary">
                 Show
               </a>
+              
+              <% if ( authenticated ) { %>
+                <a href="/products/<%= product.id %>/edit" class="btn btn-primary">
+                  Edit
+                </a>
 
-              <a href="/products/<%= product.id %>/edit" class="btn btn-primary">
-                Edit
-              </a>
-
-              <form action="/products/<%= product.id %>/delete" method="post"  onsubmit="return confirm('Are you sure you want to delete this product?');">
-                <input type="hidden" name="id" value="<%= product.id %>">
-                <button type="submit" class="btn btn-danger">DELETE</button>
-              </form>
+                <form action="/products/<%= product.id %>/delete" method="post"  onsubmit="return confirm('Are you sure you want to delete this product?');">
+                  <input type="hidden" name="id" value="<%= product.id %>">
+                  <button type="submit" class="btn btn-danger">DELETE</button>
+                </form>
+              <% } %>
             </div>
           </div>
         </div>
