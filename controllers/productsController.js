@@ -44,7 +44,14 @@ exports.show = function ( req, res, next ) {
 };
 
 // New
-exports.new = function ( req, res ) {
+exports.new = function ( req, res, next ) {
+  if ( !req.isAuthenticated() ) {
+    req.session.messages = []
+    req.session.messages.push( 'Please login.' )
+
+    return res.redirect( '/sessions/new' )
+  }
+
   // locals
   let locals = {
     title: 'New Product'
@@ -55,6 +62,13 @@ exports.new = function ( req, res ) {
 
 // Edit
 exports.edit = function ( req, res, next ) {
+  if ( !req.isAuthenticated() ) {
+    req.session.messages = []
+    req.session.messages.push( 'Please login.' )
+
+    return res.redirect( '/sessions/new' )
+  }
+
   // locals
   let locals = {
     title: 'Edit Product'
@@ -78,6 +92,13 @@ exports.edit = function ( req, res, next ) {
 /* ACTIONS */
 // Create 
 exports.create = function ( req, res, next ) {
+  if ( !req.isAuthenticated() ) {
+    req.session.messages = []
+    req.session.messages.push( 'Please login.' )
+
+    return res.redirect( '/sessions/new' )
+  }
+
   // image
   if ( req.files && req.files.image ) {
     let image = req.files.image
@@ -128,7 +149,13 @@ exports.create = function ( req, res, next ) {
 
 // Update
 exports.update = function ( req, res, next ) {
-  // images
+  if ( !req.isAuthenticated() ) {
+    req.session.messages = []
+    req.session.messages.push( 'Please login.' )
+
+    return res.redirect( '/sessions/new' )
+  }
+
   // image
   if ( req.files && req.files.image ) {
     let image = req.files.image
@@ -184,7 +211,14 @@ exports.update = function ( req, res, next ) {
 };
 
 // Delete
-exports.delete = function ( req, res ) {
+exports.delete = function ( req, res, next ) {
+  if ( !req.isAuthenticated() ) {
+    req.session.messages = []
+    req.session.messages.push( 'Please login.' )
+
+    return res.redirect( '/sessions/new' )
+  }
+
   Product.remove({
     _id: req.body.id
   })
