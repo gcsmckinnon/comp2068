@@ -90,19 +90,24 @@ exports.create = function ( req, res, next ) {
   // specifications
   let specifications = null
   if (req.body['specification[key]'] && req.body['specification[value]']) {
-    // assign an empty array to specfications
-    specifications =[]
+    // assign our fields results to variables
     let spec_keys = req.body['specification[key]']
     let spec_values = req.body['specification[value]']
     
-    // populate if an array
-    if ( spec_keys && Array.isArray( spec_keys ) ) {
-      for (let i = 0; i < spec_keys.length; i++) {
-        specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+    // assign an empty array to specfications
+    specifications =[]
+
+    // verify that spec keys and values are equal
+    if (spec_keys.length == spec_values.length) {
+      // populate if an array
+      if ( spec_keys && Array.isArray( spec_keys ) ) {
+        for (let i = 0; i < spec_keys.length; i++) {
+          specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+        }
+      } else {
+        // populate if a string
+        specifications.push( { key: spec_keys, value: spec_values } )
       }
-    } else {
-      // populate is a string
-      specifications.push( { key: spec_keys, value: spec_values } )
     }
   }
 
@@ -136,19 +141,24 @@ exports.update = function ( req, res, next ) {
   // specifications
   let specifications = null
   if (req.body['specification[key]'] && req.body['specification[value]']) {
-    // assign an empty array to specfications
-    specifications =[]
+    // assign our fields results to variables
     let spec_keys = req.body['specification[key]']
     let spec_values = req.body['specification[value]']
     
-    // populate if an array
-    if ( spec_keys && Array.isArray( spec_keys ) ) {
-      for (let i = 0; i < spec_keys.length; i++) {
-        specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+    // assign an empty array to specfications
+    specifications =[]
+
+    // verify that spec keys and values are equal
+    if (spec_keys.length == spec_values.length) {
+      // populate if an array
+      if ( spec_keys && Array.isArray( spec_keys ) ) {
+        for (let i = 0; i < spec_keys.length; i++) {
+          specifications.push( { key: spec_keys[i], value: spec_values[i] } )
+        }
+      } else {
+        // populate if a string
+        specifications.push( { key: spec_keys, value: spec_values } )
       }
-    } else {
-      // populate is a string
-      specifications.push( { key: spec_keys, value: spec_values } )
     }
   }
 
