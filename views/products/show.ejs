@@ -1,44 +1,47 @@
 <% include ../partials/header %>
   
 <section>
-  <div>
-    <a href="/products/new">New Product</a>
-  </div>
+  <% if ( authenticated ) { %>
+    <div>
+      <a href="/products/new">New Product</a>
+    </div>
+  <% } %>
 
   <div class="row">
 
     <div class="col-sm-6">
       <div class="card">
-          <div class="card-body">
-            <% if ( product.image ) { %>
-              <div class="image">
-                <img src="/images/<%= product.image %>" class="img-thumbnail img-fluid">
-              </div>
-            <% } %>
-            
-            <h5 class="card-title">
-              <%= product.name %>
-            </h5>
+        <div class="card-body">
+          <% if ( product.image ) { %>
+            <div class="image">
+              <img src="/images/<%= product.image %>" class="img-thumbnail img-fluid">
+            </div>
+          <% } %>
+          
+          <h5 class="card-title">
+            <%= product.name %>
+          </h5>
 
-            <p>
-              <%= product.description %>
-            </p>
-            
-            <p>
-              <%= product.price %>
-            </p>
-            
-            <% if ( product.specifications && product.specifications.length > 0 ) { %>
-              <hr>
-              <h6>Specs</h6>
-              <% for( let spec of product.specifications ) { %>
-                <p>
-                  <strong><%= spec.key %>: </strong>
-                  <%= spec.value %>
-                </p>
-              <% } %>
+          <p>
+            <%= product.description %>
+          </p>
+          
+          <p>
+            <%= product.price %>
+          </p>
+          
+          <% if ( product.specifications && product.specifications.length > 0 ) { %>
+            <hr>
+            <h6>Specs</h6>
+            <% for( let spec of product.specifications ) { %>
+              <p>
+                <strong><%= spec.key %>: </strong>
+                <%= spec.value %>
+              </p>
             <% } %>
-            
+          <% } %>
+          
+          <% if ( authenticated ) { %>
             <div class="actions">
               <a href="/products/<%= product.id %>/edit" class="btn btn-primary">
                 Edit
@@ -49,8 +52,9 @@
                 <button type="submit" class="btn btn-danger">DELETE</button>
               </form>
             </div>
-          </div>
+          <% } %>
         </div>
+      </div>
     </div>
 
   </div>
