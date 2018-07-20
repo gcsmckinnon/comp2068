@@ -1,0 +1,84 @@
+<% include ../partials/header %>
+
+<section>
+  <form action="/products/<%= product.id %>" method="post" novalidate enctype="multipart/form-data">
+    <fieldset>
+      <legend>Product Information</legend>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="product_name" name="name" placeholder="Creepy Leeches" required value="<%= product.name %>">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="product_description" name="description" placeholder="Greasy, black, vampires of the deep." required value="<%= product.description %>">
+      </div>
+
+      <div class="form-group">
+        <input type="file" name="image" id="image">
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+
+          <input type="number" class="form-control" id="product_price" name="price" placeholder="4.99" step="0.01" min="0" required value="<%= product.price %>">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Specifications</legend>
+      
+      <div id="product_specifications">
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-sm" onclick="addSpecForm()">Add Specification</button>
+        </div>
+        
+        <% if ( product.specifications && product.specifications.length > 0 ) {%>
+          <% for ( let spec of product.specifications ) { %>
+            <div class="specification">
+              <button type="button" class="remove btn btn-danger btn-small" onclick="return delSpecForm(event)">&times;</button>
+
+              <div class="form-group mr-4">
+                <label for="specification[key]" class="mr-1">Key</label>
+                <input type="text" class="form-control" id="product_specification_key" name="specification[key]" placeholder="colour" value="<%= spec.key %>">
+              </div>
+
+              <div class="form-group">
+                <label for="specification[value]" class="mr-1">Value</label>
+                <input type="text" class="form-control" id="product_specification_value" name="specification[value]" placeholder="red" value="<%= spec.value %>">
+              </div>
+            </div>
+          <% } %>
+        <% } %>
+
+        <template id="product_specification" class="form-inline mb-4">
+          <div class="specification">
+            <button type="button" class="remove btn btn-danger btn-small" onclick="return delSpecForm(event)">&times;</button>
+
+            <div class="form-group mr-4">
+              <label for="specification[key]" class="mr-1">Key</label>
+              <input type="text" class="form-control" id="product_specification_key" name="specification[key]" placeholder="colour">
+            </div>
+
+            <div class="form-group">
+              <label for="specification[value]" class="mr-1">Value</label>
+              <input type="text" class="form-control" id="product_specification_value" name="specification[value]" placeholder="red">
+            </div>
+          </div>
+        </template>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Update Product</button>
+    </div>
+  </form>
+</section>
+
+<% include ../partials/footer %>

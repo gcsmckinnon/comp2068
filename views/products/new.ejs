@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 
 <section>
-  <form action="/products" method="post" novalidate>
+  <form action="/products" method="post" novalidate enctype="multipart/form-data">
     <fieldset>
       <legend>Product Information</legend>
 
@@ -16,6 +16,10 @@
       </div>
 
       <div class="form-group">
+        <input type="file" name="image" id="image">
+      </div>
+
+      <div class="form-group">
         <label for="price">Price</label>
         <div class="input-group">
           <div class="input-group-prepend">
@@ -27,8 +31,34 @@
       </div>
     </fieldset>
 
+    <fieldset>
+      <legend>Specifications</legend>
+      
+      <div id="product_specifications">
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-sm" onclick="addSpecForm()">Add Specification</button>
+        </div>
+
+        <template id="product_specification" class="form-inline mb-4">
+          <div class="specification">
+            <button type="button" class="remove btn btn-danger btn-small" onclick="delSpecForm(event)">&times;</button>
+
+            <div class="form-group mr-4">
+              <label for="specification[key]" class="mr-1">Key</label>
+              <input type="text" class="form-control" id="product_specification_key" name="specification[key]" placeholder="colour">
+            </div>
+
+            <div class="form-group">
+              <label for="specification[value]" class="mr-1">Value</label>
+              <input type="text" class="form-control" id="product_specification_value" name="specification[value]" placeholder="red">
+            </div>
+          </div>
+        </template>
+      </div>
+    </fieldset>
+
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Create Product</button>
+      <button type="submit" class="btn btn-primary btn-lg">Create Product</button>
     </div>
   </form>
 </section>
