@@ -21,6 +21,25 @@ exports.index = function( req, res, next ) {
   });
 };
 
+// Show
+exports.show = function ( req, res, next ) {
+  // locals
+  let locals = {
+    title: 'Product Details'
+  }
+
+  Product.findById({
+    _id: req.params.id
+  })
+  .then( function ( product ) {
+    locals.product = product
+    res.render( 'products/show', locals )
+  })
+  .catch( function ( err ) {
+    next( err )
+  })
+}
+
 // New
 exports.new = function ( req, res, next ) {
   if ( !req.isAuthenticated() ) {
